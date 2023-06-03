@@ -2,12 +2,15 @@ body{
     text-align: center;
 }
 
+li{
+    transition: 1.5s;
+}
 
 
 
 /* when li is clicked */
 .checked{
     text-decoration:line-through;
-    color: brown;
+    color: rgba(255, 0, 0, 0.5);
 }
 
