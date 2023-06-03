@@ -60,7 +60,7 @@ showTodo.addEventListener('click', (evt) => {
     //업데이트 부분
     } else if (target.classList.contains('updated')) {
         const li = target.closest('li');
-        li.innerText = update();
+        li.innerText = update(li.innerText);
         const updateBtn = makeUpdateBtn();
         const delBtn = makeDelBtn();
         li.appendChild(updateBtn);
@@ -68,7 +68,11 @@ showTodo.addEventListener('click', (evt) => {
     }
   });
 
-function update(){
+function update(origin){
     let text =  prompt('수정 내용 입력');
-    return text;
+    if(text)return text
+    else {
+        return origin;
+    }
+    
 }
