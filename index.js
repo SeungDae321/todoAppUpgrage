@@ -20,8 +20,8 @@ const makeUpdateBtn = ()=>{
 
 //checked 함수
 const addChecked = (tag)=>{
-    tag.addEventListener('click',()=>{
-        tag.classList.toggle('checked')
+    tag.addEventListener('click',(evt)=>{
+        evt.target.classList.toggle('checked')
     })
 }
 //todo 추가 함수
