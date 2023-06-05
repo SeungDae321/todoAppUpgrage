@@ -13,14 +13,10 @@ const makeDelBtn = ()=>{
 //checked 함수
 const addChecked = (tag)=>{
     tag.addEventListener('click',(evt)=>{
-
-       if(evt.target.nodeName != 'LI'){
-        return
-       } else{
-            evt.target.classList.toggle('checked')
+        evt.target.classList.toggle('checked')
        } 
-    })
-}
+    )}
+
 //todo 추가 함수
 const addTodoFunc = (todo) => {
     const addLi = document.createElement('li');
@@ -55,7 +51,7 @@ showTodo.addEventListener('click', (evt) => {
 
 
 showTodo.addEventListener('dblclick',(evt)=>{
-    evt.target.rmoeve()
+    evt.target.remove()
 })
 
 
