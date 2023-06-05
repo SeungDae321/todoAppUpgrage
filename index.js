@@ -1,17 +1,9 @@
 //추가될 todo가 적용될 곳
 const showTodo = document.querySelector('.showTodo');
 
+
 //삭제버튼 생성 함수
 const makeDelBtn = ()=>{
-    const updateBtn = document.createElement('button');
-    updateBtn.classList.add('updated')
-    updateBtn.innerHTML = 'update';
-    return updateBtn;
-
-}
-
-//업데이트버튼 생성 함수
-const makeUpdateBtn = ()=>{
     const delBtn = document.createElement('button');
     delBtn.classList.add('deleted');
     delBtn.innerHTML= 'delete';
@@ -21,18 +13,19 @@ const makeUpdateBtn = ()=>{
 //checked 함수
 const addChecked = (tag)=>{
     tag.addEventListener('click',(evt)=>{
-        evt.target.classList.toggle('checked')
+
+       if(evt.target.nodeName != 'LI'){
+        return
+       } else{
+            evt.target.classList.toggle('checked')
+       } 
     })
 }
 //todo 추가 함수
 const addTodoFunc = (todo) => {
     const addLi = document.createElement('li');
     addLi.innerText = todo;
-
-    const updateBtn = makeUpdateBtn();
     const delBtn = makeDelBtn();
-
-    addLi.appendChild(updateBtn);
     addLi.appendChild(delBtn);
     addChecked(addLi)
     showTodo.append(addLi);
@@ -51,28 +44,22 @@ addBtn.addEventListener('click',(evt)=>{
     }
 })
 
+ //삭제 부분
 showTodo.addEventListener('click', (evt) => {
-    //삭제 부분
     const target = evt.target;
     if (target.classList.contains('deleted')) {
       const li = target.closest('li');
       li.remove();
-    //업데이트 부분
-    } else if (target.classList.contains('updated')) {
-        const li = target.closest('li');
-        li.innerText = update(li.innerText);
-        const updateBtn = makeUpdateBtn();
-        const delBtn = makeDelBtn();
-        li.appendChild(updateBtn);
-        li.appendChild(delBtn);
-    }
+     }
   });
 
-function update(origin){
-    let text =  prompt('수정 내용 입력');
-    if(text)return text
-    else {
-        return origin;
-    }
-    
-}
+
+showTodo.addEventListener('dblclick',(evt)=>{
+    evt.target.rmoeve()
+})
+
+
+//제목을 눌렀을 때 사용방법 알려줌
+document.querySelector('h1').addEventListener('click',()=>{
+    alert('클릭: 체크 | 더블클릭: 삭제')
+})
