@@ -6,7 +6,7 @@ const showTodo = document.querySelector('.showTodo');
 const makeDelBtn = ()=>{
     const delBtn = document.createElement('button');
     delBtn.classList.add('deleted');
-    delBtn.innerHTML= 'delete';
+    delBtn.innerHTML= '삭제';
     return delBtn
 }
 
@@ -20,17 +20,18 @@ const addChecked = (tag)=>{
 //todo 추가 함수
 const addTodoFunc = (todo) => {
     const addLi = document.createElement('li');
-    addLi.innerText = todo;
+    const text = document.createElement('span');
+    text.innerText = todo;
     const delBtn = makeDelBtn();
+    addLi.appendChild(text);
     addLi.appendChild(delBtn);
-    addChecked(addLi)
-    showTodo.append(addLi);
+    showTodo.appendChild(addLi);
+    addChecked(text)
 }
 
 //추가CREATE
 const addKey = document.querySelector('#addKey');
 const addBtn = document.querySelector('.addBtn');
-
 addBtn.addEventListener('click',(evt)=>{
     evt.preventDefault();
     if(!addKey.value)return
@@ -48,14 +49,3 @@ showTodo.addEventListener('click', (evt) => {
       li.remove();
      }
   });
-
-
-showTodo.addEventListener('dblclick',(evt)=>{
-    evt.target.remove()
-})
-
-
-//제목을 눌렀을 때 사용방법 알려줌
-document.querySelector('h1').addEventListener('click',()=>{
-    alert('클릭: 체크 | 더블클릭: 삭제')
-})
